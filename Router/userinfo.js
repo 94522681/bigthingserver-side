@@ -1,0 +1,10 @@
+const express=require('express')
+const router=express.Router()
+const expressjoi=require('@escook/express-joi')
+const {reg_userinfo_schema,update_password_schema,update_avatar_schema}=require('../schema/user')
+const userinfor_handle=require('../Router_Handler/userinfo')
+router.get('/userinfo',userinfor_handle.getUserInfo)
+router.post('/userinfo',expressjoi(reg_userinfo_schema),userinfor_handle.updateUserInfo)
+router.post('/updatepwd',expressjoi(update_password_schema),userinfor_handle.updatePassword)
+router.post('/avatar',expressjoi(update_avatar_schema),userinfor_handle.updateAvatar)
+module.exports=router

@@ -1,0 +1,11 @@
+const express=require('express')
+const router=express.Router()
+const artcate_handler=require('../Router_Handler/artcate')
+const expressjoi=require('@escook/express-joi')
+const {add_artcate_schema,del_artcate_schema,getid_artcate_schema,updateid_artcate_schema}=require('../schema/artcate')
+router.get('/cates',artcate_handler.getArticleCates)
+router.post('/addcates',expressjoi(add_artcate_schema),artcate_handler.addArticleCates)
+router.get('/delcates/:Id',artcate_handler.delArticleCates)
+router.get('/cates/:Id',expressjoi(getid_artcate_schema),artcate_handler.getArticleCatesById)
+router.post('/updatecate',expressjoi(updateid_artcate_schema),artcate_handler.updateArticleCatesById)
+module.exports=router
